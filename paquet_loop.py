@@ -4,4 +4,4 @@
 class paquet_loop:
 
     def __init__(self):
-        pass
+        print("Type LOOP")

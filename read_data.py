@@ -3,6 +3,7 @@
 
 from paquet_loop2 import paquet_loop2
 from paquet_loop import paquet_loop
+import ASCII
 
 class Trame:
 
@@ -10,16 +11,14 @@ class Trame:
         self.m_trame = "4c4f4f1401ff7f0375d40225c20105ff57013c00580010005101ff7fff7f2000ff3dff2c002900ff000000ffff7f0c0092240c000000000000000c00020000ffff037503750375ff06050e120a02151a030101ff7fff7fff7fff7fff7fff7f0a0d5ea0"
         self.m_size_type_paquet = 5
         self.list_trame = {}
+        self.add_list()
         type = self.get_type_packet()
         if type == "LOOP":
             paquet_loop()
         elif type == "LOOP2":
             paquet_loop2()
-
-        self.add_list()
-        print(self.list_trame[4])
-        print(len(self.list_trame))
-        print(self.get_type_packet())
+        for octect in self.list_trame:
+            print(ASCII.getCharacter(self.list_trame[octect]))
 
     def add_list(self):
         nb_tour = 0;
@@ -37,9 +36,9 @@ class Trame:
                 etape += 1
 
     def get_type_packet(self):
-        if self.m_trame[4] == "0" and self.m_trame[5] == "0":
+        if self.list_trame[4] == "00":
             return "LOOP"
-        elif self.m_trame[4] == "0" and self.m_trame[5] == "1":
+        elif self.list_trame[4] == "01":
             return "LOOP2"
         else:
             return "Erreur"

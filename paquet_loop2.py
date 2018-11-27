@@ -4,5 +4,5 @@
 class paquet_loop2:
 
     def __init__(self):
-        pass
+        print("Type LOOP2")
     
