@@ -3,11 +3,13 @@
 
 from paquet_loop2 import paquet_loop2
 from paquet_loop import paquet_loop
+from Emulator import Emulator
 import ASCII
 
 class Trame:
 
-    def __init__(self, trame="Aucune Trame"):
+    def __init__(self, trame="Aucune Trame", demo=False):
+        self.demo = demo
         self.m_trame = trame
         self.m_size_type_paquet = 5
         self.list_trame = {}
@@ -19,6 +21,8 @@ class Trame:
             paquet_loop2()
         for octect in self.list_trame:
             print(ASCII.getCharacter(self.list_trame[octect]))
+        if self.demo:
+            self.emulator = Emulator()
 
     def add_list(self):
         nb_tour = 0;
@@ -39,3 +43,6 @@ class Trame:
             return "LOOP2"
         else:
             return "Erreur"
+
+    def __del__(self):
+        pass
