@@ -7,8 +7,8 @@ import ASCII
 
 class Trame:
 
-    def __init__(self):
-        self.m_trame = "4c4f4f1401ff7f0375d40225c20105ff57013c00580010005101ff7fff7f2000ff3dff2c002900ff000000ffff7f0c0092240c000000000000000c00020000ffff037503750375ff06050e120a02151a030101ff7fff7fff7fff7fff7fff7f0a0d5ea0"
+    def __init__(self, trame="Aucune Trame"):
+        self.m_trame = trame
         self.m_size_type_paquet = 5
         self.list_trame = {}
         self.add_list()
@@ -39,6 +39,3 @@ class Trame:
             return "LOOP2"
         else:
             return "Erreur"
-
-if __name__ == "__main__":
-    Trame()
