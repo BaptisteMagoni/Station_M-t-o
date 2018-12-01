@@ -3,8 +3,9 @@
 
 class paquet_loop2:
 
-    def __init__(self):
+    def __init__(self, trame):
         print("Type LOOP2")
+        self.m_trame = trame
 
     def get_bar_trend(self):
         pass

@@ -12,17 +12,16 @@ class SerialWrapper:
         self.demo = demo
         if not self.demo:
             self.log = logging.getLogger(__name__)
-            print("MySerialVisaWrapper instance created")
+            print("Création de la méthode Sérial Wrapper")
             if com_port is not None:
                 self.ser = serial.Serial('COM{}'.format(com_port), 9600, timeout=20, stopbits=2, dsrdtr=True)
-                self.log.info("COM PORT Found !")
-                print("COM PORT {} Found !".format(com_port))
+                print("COM PORT {} trouvé !".format(com_port))
             elif com_str is not None:
                 self.ser = serial.Serial(com_str, baudrate=9600, timeout=0)
 
     def write(self, data):
         if not self.demo:
-            print("MySerialVisaWrapper Writing {}".format(data))
+            print("Ecriture {}".format(data))
             self.ser.write(data.encode())
             self.ser.flush()
 

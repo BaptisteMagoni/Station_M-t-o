@@ -3,8 +3,9 @@
 
 class paquet_loop:
 
-    def __init__(self):
+    def __init__(self, trame):
         print("Type LOOP")
+        self.m_trame = trame
 
     def get_next_record(self):
         pass

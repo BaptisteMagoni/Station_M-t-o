@@ -16,11 +16,9 @@ class Trame:
         self.add_list()
         type = self.get_type_packet()
         if type == "LOOP":
-            paquet_loop()
+            paquet_loop(trame=self.list_trame)
         elif type == "LOOP2":
-            paquet_loop2()
-        for octect in self.list_trame:
-            print(ASCII.getCharacter(self.list_trame[octect]))
+            paquet_loop2(trame=self.list_trame)
         if self.demo:
             self.emulator = Emulator()
 
