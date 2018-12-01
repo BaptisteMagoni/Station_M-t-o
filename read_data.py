@@ -29,10 +29,7 @@ class Trame:
                 nb_tour += 1
                 etape = 0
             else:
-                if nb_tour == 0:
-                    self.list_trame[nb_tour] = case
-                else:
-                    self.list_trame[nb_tour] = case
+                self.list_trame[nb_tour] = case
                 etape += 1
 
     def get_type_packet(self):

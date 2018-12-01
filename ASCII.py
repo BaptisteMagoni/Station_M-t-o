@@ -1,5 +1,5 @@
 #!/usr/bin/python3.6
-#-*-coding:utf-8-*-
+#coding: utf8
 
 ASCII = {
     "00": "",
@@ -65,4 +65,4 @@ ASCII = {
 def getCharacter(caractere):
     for cara in ASCII:
         if str(caractere).upper() == cara:
-            return ASCII[cara]
+            return str(ASCII[cara])
