@@ -16,15 +16,21 @@ class Trame:
         self.add_list()
         type = self.get_type_packet()
         if type == "LOOP":
-            paquet_loop(trame=self.list_trame)
+            t = paquet_loop(trame=self.list_trame)
         elif type == "LOOP2":
-            paquet_loop2(trame=self.list_trame)
+            t = paquet_loop2(trame=self.list_trame)
+            print("Bar Trend : " + t.get_bar_trend())
+            print("Barometer : {}".format(t.get_barometer()))
+            print("Inside temperature : {} °c".format(t.get_inside_temperature()))
+            print("Inside Humidity : {} %".format(t.get_inside_humidity()))
+            print("Outside Temperature : {} °C".format(t.get_outside_temperature()))
         if self.demo:
             self.emulator = Emulator()
-        print(ASCII.getDecimal("FF"))
+        #print(ASCII.getDecimal(self.list_trame[3]))
+
 
     def add_list(self):
-        nb_tour = 0;
+        nb_tour = 0
         etape = 0
         for case in self.m_trame:
             if etape % 2:

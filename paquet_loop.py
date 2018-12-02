@@ -3,6 +3,10 @@
 
 class paquet_loop:
 
+    dict_offset = {
+
+    }
+
     def __init__(self, trame):
         print("Type LOOP")
         self.m_trame = trame
