@@ -14,10 +14,12 @@ class Main:
             sleep(1)
             ans = self.serialwrapper.read()
             if(len(ans)) == 198:
+                print("------------------------------------------------------------------------------------------------")
                 print("Trame : {}".format(ans))
                 print("Taille de la chaine est de {} donc elle est correct".format(len(ans)))
                 self.m_trame = Trame(trame=ans, demo=self.demo)
                 self.m_trame.__del__()
+                print("------------------------------------------------------------------------------------------------")
                 break
             else:
                 print("Taille de la chaine est de {} donc elle est pas correct".format(len(ans)))
