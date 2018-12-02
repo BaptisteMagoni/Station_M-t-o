@@ -21,6 +21,7 @@ class Trame:
             paquet_loop2(trame=self.list_trame)
         if self.demo:
             self.emulator = Emulator()
+        print(ASCII.getDecimal("FF"))
 
     def add_list(self):
         nb_tour = 0;
