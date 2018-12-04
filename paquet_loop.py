@@ -115,3 +115,7 @@ class paquet_loop:
 
     def get_time_of_sunset(self):
         pass
+
+    def __parse_fahrenheit_degres(self, data1, data2):
+        res = ((data1 * 256 + data2) / 1000) * 33.86
+        return res

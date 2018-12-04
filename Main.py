@@ -9,7 +9,7 @@ class Main:
 
     def __init__(self, demo=False):
         self.demo = demo
-        self.serialwrapper = SerialWrapper(com_str="COM4", demo=demo)
+        self.serialwrapper = SerialWrapper(com_str="COM6", demo=demo)
         while 1:
             sleep(1)
             ans = self.serialwrapper.read()
@@ -26,4 +26,4 @@ class Main:
 
 
 if __name__ == "__main__":
-    Main(demo=True)
+    Main(demo=False)

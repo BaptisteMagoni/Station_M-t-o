@@ -13,16 +13,19 @@ class Trame:
         self.m_trame = trame
         self.list_trame = {}
         self.add_list()
+        self.instance_packet = None
         type = self.get_type_packet()
         if type == "LOOP":
-            t = paquet_loop(trame=self.list_trame)
+            self.instance_packet = paquet_loop(trame=self.list_trame)
         elif type == "LOOP2":
-            t = paquet_loop2(trame=self.list_trame)
-            print("Bar Trend : {}".format(t.get_bar_trend()))
-            print("Barometer : {}".format(t.get_barometer()))
-            print("Inside temperature : {} °C".format(t.get_inside_temperature()))
-            print("Inside Humidity : {} %".format(t.get_inside_humidity()))
-            print("Outside Temperature : {} °C".format(t.get_outside_temperature()))
+            self.instance_packet = paquet_loop2(trame=self.list_trame)
+        print("Bar Trend : {}".format(self.instance_packet.get_bar_trend()))
+        print("Barometer : {} inches".format(self.instance_packet.get_barometer()))
+        print("Inside temperature : {} °C".format(self.instance_packet.get_inside_temperature()))
+        print("Inside Humidity : {} %".format(self.instance_packet.get_inside_humidity()))
+        print("Outside Temperature : {} °C".format(self.instance_packet.get_outside_temperature()))
+        print("Wind speed : {} km/h".format(self.instance_packet.get_wind_speed()))
+        print("Wind direction : {} °".format(self.instance_packet.get_wind_direction()))
         if self.demo:
             self.emulator = Emulator()
         #print(ASCII.getDecimal(self.list_trame[3]))

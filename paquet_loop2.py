@@ -30,7 +30,7 @@ class paquet_loop2:
     def get_barometer(self):
         data1 = int(ASCII.getDecimal(self.m_trame[8]))
         data2 = int(ASCII.getDecimal(self.m_trame[7]))
-        res = ((data1*256+data2)/1000)*33.86
+        res = ((data1*256+data2)/1000)
         if (res > 20) and (res < 32.5):
             return res
         else:
@@ -50,10 +50,12 @@ class paquet_loop2:
         return self.__parse_fahrenheit_degres(data1, data2)
 
     def get_wind_speed(self):
-        pass
+        return int(ASCII.getDecimal(self.m_trame[14]))*1.60934
 
     def get_wind_direction(self):
-        pass
+        data1 = int(ASCII.getDecimal(self.m_trame[17]))
+        data2 = int(ASCII.getDecimal(self.m_trame[16]))
+        return self.__parse_fahrenheit_degres(data1, data2)
 
     def get_10min_avg_wind_speed(self):
         pass
