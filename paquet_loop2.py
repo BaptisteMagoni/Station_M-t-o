@@ -9,6 +9,9 @@ class paquet_loop2:
         print("Type LOOP2")
         self.m_trame = trame
 
+    def get_type(self):
+        return "LOOP2"
+
     def get_bar_trend(self):
         data = ASCII.getDecimal(self.m_trame[3])
         if data is "-60":

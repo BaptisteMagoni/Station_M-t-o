@@ -11,6 +11,9 @@ class paquet_loop:
         print("Type LOOP")
         self.m_trame = trame
 
+    def get_type(self):
+        return "LOOP"
+
     def get_next_record(self):
         pass
 

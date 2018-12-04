@@ -11,7 +11,6 @@ class Trame:
     def __init__(self, trame="Aucune Trame", demo=False):
         self.demo = demo
         self.m_trame = trame
-        self.m_size_type_paquet = 5
         self.list_trame = {}
         self.add_list()
         type = self.get_type_packet()
@@ -19,9 +18,9 @@ class Trame:
             t = paquet_loop(trame=self.list_trame)
         elif type == "LOOP2":
             t = paquet_loop2(trame=self.list_trame)
-            print("Bar Trend : " + t.get_bar_trend())
+            print("Bar Trend : {}".format(t.get_bar_trend()))
             print("Barometer : {}".format(t.get_barometer()))
-            print("Inside temperature : {} °c".format(t.get_inside_temperature()))
+            print("Inside temperature : {} °C".format(t.get_inside_temperature()))
             print("Inside Humidity : {} %".format(t.get_inside_humidity()))
             print("Outside Temperature : {} °C".format(t.get_outside_temperature()))
         if self.demo:

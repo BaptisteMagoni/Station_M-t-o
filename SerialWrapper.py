@@ -18,6 +18,8 @@ class SerialWrapper:
                 print("COM PORT {} trouvé !".format(com_port))
             elif com_str is not None:
                 self.ser = serial.Serial(com_str, baudrate=9600, timeout=0)
+        else:
+            print("Mode démo")
 
     def write(self, data):
         if not self.demo:
@@ -32,4 +34,4 @@ class SerialWrapper:
             except:
                 self.log.error("Un erreur c'est produite dans la lecture du port série !")
         else:
-            return "4c4f4f1401ff7f0375d40225c20105ff57013c00580010005101ff7fff7f2000ff3dff2c002900ff000000ffff7f0c0092240c000000000000000c00020000ffff037503750375ff06050e120a02151a030101ff7fff7fff7fff7fff7fff7f0a0d5ea0"
+            return "4c4f4f1401ff7f0275d40224b90104ff3b014a003c0010005101ff7fff7f2100ff41ff2b002800ff000000ffff7f0c0092240c000000000000000c00020000ffff027502750275ff00050e120a06151e030101ff7fff7fff7fff7fff7fff7f0a0d40c0"
