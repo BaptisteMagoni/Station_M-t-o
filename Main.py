@@ -11,10 +11,8 @@ class Main:
         self.demo = demo
         self.serialwrapper = SerialWrapper(com_str="/dev/ttyUSB0", demo=demo)
         self.serialwrapper.write("LPS\n")
-        while 1:
-            sleep(1)
-            ans = self.serialwrapper.read()
-            print(ans)
+        self.ans = self.serialwrapper.read()
+        self.showLastTrame()
             #if(len(ans)) == 99:
             #    print("------------------------------------------------------------------------------------------------")
             #    print("Trame : {}".format(ans))
@@ -25,6 +23,15 @@ class Main:
             #else:
             #    print("Taille de la chaine est de {} donc elle est pas correct".format(len(ans)))
 
+    def showLastTrame(self):
+        self.byte_afficherBytearrayHexa(self.ans, "-")
+
+    def byte_afficherBytearrayHexa(self, tableOctet, separateur=' '):
+        for idx, octet in enumerate(tableOctet):
+            if idx != len(tableOctet) - 1:
+                print("%s%s" % ('{:02x}'.format(octet), separateur), end='')
+            else:  # évite d'afficher le séparateur après le dernier octet affiché
+                print('{:02x}'.format(octet))
 
 if __name__ == "__main__":
     Main(demo=False)
