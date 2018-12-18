@@ -12,7 +12,8 @@ class Trame:
         self.demo = demo
         self.m_trame = trame
         self.list_trame = {}
-        self.add_list()
+        self.list_trame = trame
+        #self.add_list()
         self.instance_packet = None
         type = self.get_type_packet()
         if type == "LOOP":

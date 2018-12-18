@@ -14,10 +14,14 @@ class SerialWrapper:
             self.log = logging.getLogger(__name__)
             print("Création de la méthode Sérial Wrapper")
             if com_port is not None:
-                self.ser = serial.Serial('COM{}'.format(com_port), 9600, timeout=20, stopbits=2, dsrdtr=True)
+                self.ser = serial.Serial(port=com_port, baudrate=19200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=5)
                 print("COM PORT {} trouvé !".format(com_port))
             elif com_str is not None:
-                self.ser = serial.Serial(com_str, baudrate=9600, timeout=0)
+                try:
+                    self.ser = serial.Serial(port=com_str, baudrate=19200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=5)
+                    print("COM STR {} trouvé !".format(com_str))
+                except:
+                    print("Erreur COM STR")
         else:
             print("Mode démo")
 
@@ -25,12 +29,11 @@ class SerialWrapper:
         if not self.demo:
             print("Ecriture {}".format(data))
             self.ser.write(data.encode())
-            self.ser.flush()
 
     def read(self):
         if not self.demo:
             try:
-                return self.ser.read(size=198).decode('utf-8')
+                return self.ser.read(size=99).decode('utf-8')
             except:
                 self.log.error("Un erreur c'est produite dans la lecture du port série !")
         else:
