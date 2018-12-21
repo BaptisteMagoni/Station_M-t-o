@@ -1,7 +1,5 @@
 #include <SoftwareSerial.h>
 
-bool receive;
-
 void setup() {
   Serial.begin(19200);
 

@@ -28,11 +28,11 @@ class paquet_loop2:
             return "P"
 
     def get_barometer(self):
-        data1 = int(ASCII.getDecimal(self.m_trame[8]))
-        data2 = int(ASCII.getDecimal(self.m_trame[7]))
+        data1 = float(ASCII.getDecimal(self.m_trame[8]))
+        data2 = float(ASCII.getDecimal(self.m_trame[7]))
         res = ((data1*256+data2)/1000)
         if (res >= 20) and (res <= 32.5):
-            return str(res)
+            return float(res)
         else:
             return "None"
 
