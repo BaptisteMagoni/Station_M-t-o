@@ -17,8 +17,8 @@ class Main:
             print(self.ans)
             if(len(self.ans)) == 198:
                 print("------------------------------------------------------------------------------------------------")
-                print("Trame : {}".format(self.ans))
-                print("Taille de la chaine est de {} donc elle est correct".format(len(self.ans)))
+                #print("Trame : {}".format(self.ans))
+                #print("Taille de la chaine est de {} donc elle est correct".format(len(self.ans)))
                 self.m_trame = Trame(trame=self.ans, demo=self.demo)
                 self.m_trame.__del__()
                 print("------------------------------------------------------------------------------------------------")
@@ -38,4 +38,4 @@ class Main:
     #            print('{:02x}'.format(octet))
 
 if __name__ == "__main__":
-    Main(demo=False)
+    Main(demo=True)

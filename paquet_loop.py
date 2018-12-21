@@ -3,12 +3,8 @@
 
 class paquet_loop:
 
-    dict_offset = {
-
-    }
-
     def __init__(self, trame):
-        print("Type LOOP")
+        print("Packet type : LOOP2")
         self.m_trame = trame
 
     def get_type(self):

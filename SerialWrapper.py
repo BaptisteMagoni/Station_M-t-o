@@ -33,7 +33,7 @@ class SerialWrapper:
     def read(self):
         if not self.demo:
             try:
-                return self.ser.read(198)
+                return self.ser.read(size=198)
             except:
                 self.log.error("Un erreur c'est produite dans la lecture du port série !")
         else:

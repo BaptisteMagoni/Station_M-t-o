@@ -6,7 +6,7 @@ import ASCII
 class paquet_loop2:
 
     def __init__(self, trame):
-        print("Type LOOP2")
+        print("Packet type : LOOP2")
         self.m_trame = trame
 
     def get_type(self):
@@ -31,15 +31,15 @@ class paquet_loop2:
         data1 = int(ASCII.getDecimal(self.m_trame[8]))
         data2 = int(ASCII.getDecimal(self.m_trame[7]))
         res = ((data1*256+data2)/1000)
-        if (res > 20) and (res < 32.5):
-            return res
+        if (res >= 20) and (res <= 32.5):
+            return str(res)
         else:
-            return None
+            return "None"
 
     def get_inside_temperature(self):
         data1 = int(ASCII.getDecimal(self.m_trame[10]))
         data2 = int(ASCII.getDecimal(self.m_trame[9]))
-        return self.__parse_fahrenheit_degres(data1, data2)
+        return ((data1 * 256 + data2) / 1000) * 33.86
 
     def get_inside_humidity(self):
         return ASCII.getDecimal(self.m_trame[11])
@@ -47,7 +47,7 @@ class paquet_loop2:
     def get_outside_temperature(self):
         data1 = int(ASCII.getDecimal(self.m_trame[13]))
         data2 = int(ASCII.getDecimal(self.m_trame[12]))
-        return self.__parse_fahrenheit_degres(data1, data2)
+        return ((data1 * 256 + data2) / 1000) * 33.86
 
     def get_wind_speed(self):
         return int(ASCII.getDecimal(self.m_trame[14]))*1.60934
@@ -55,7 +55,7 @@ class paquet_loop2:
     def get_wind_direction(self):
         data1 = int(ASCII.getDecimal(self.m_trame[17]))
         data2 = int(ASCII.getDecimal(self.m_trame[16]))
-        return self.__parse_fahrenheit_degres(data1, data2)
+        return ((data1 * 256 + data2) / 1000) * 33.86
 
     def get_10min_avg_wind_speed(self):
         pass
@@ -143,7 +143,3 @@ class paquet_loop2:
 
     def get_next_rain(self, type):
         pass
-
-    def __parse_fahrenheit_degres(self, data1, data2):
-        res = ((data1 * 256 + data2) / 1000) * 33.86
-        return res
