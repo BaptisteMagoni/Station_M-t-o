@@ -5,7 +5,7 @@ import socket
 import threading
 
 
-class ClientThread(threading.Thread):
+class clientThread(threading.Thread):
 
     def __init__(self, ip, port, clientsocket):
         threading.Thread.__init__(self)
@@ -18,9 +18,7 @@ class ClientThread(threading.Thread):
         print("Connexion de %s %s" % (self.ip, self.port,))
 
         r = self.clientsocket.recv(2048)
-        print("Ouverture du fichier: ", r, "...")
-        fp = open(r, 'rb')
-        self.clientsocket.send(fp.read())
+        print("Ouverture du fichier: ", r.decode("utf-8"), "...")
 
         print("Client déconnecté...")
 
