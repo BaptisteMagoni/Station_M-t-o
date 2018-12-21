@@ -11,7 +11,7 @@ class paquet_loop2:
 
     def get_type(self):
         return "LOOP2"
-
+  
     def get_bar_trend(self):
         data = ASCII.getDecimal(self.m_trame[3])
         if data is "-60":
@@ -37,24 +37,24 @@ class paquet_loop2:
             return "None"
 
     def get_inside_temperature(self):
-        data1 = int(ASCII.getDecimal(self.m_trame[10]))
-        data2 = int(ASCII.getDecimal(self.m_trame[9]))
+        data1 = float(ASCII.getDecimal(self.m_trame[10]))
+        data2 = float(ASCII.getDecimal(self.m_trame[9]))
         return ((data1 * 256 + data2) / 1000) * 33.86
 
     def get_inside_humidity(self):
         return ASCII.getDecimal(self.m_trame[11])
 
     def get_outside_temperature(self):
-        data1 = int(ASCII.getDecimal(self.m_trame[13]))
-        data2 = int(ASCII.getDecimal(self.m_trame[12]))
+        data1 = float(ASCII.getDecimal(self.m_trame[13]))
+        data2 = float(ASCII.getDecimal(self.m_trame[12]))
         return ((data1 * 256 + data2) / 1000) * 33.86
 
     def get_wind_speed(self):
         return int(ASCII.getDecimal(self.m_trame[14]))*1.60934
 
     def get_wind_direction(self):
-        data1 = int(ASCII.getDecimal(self.m_trame[17]))
-        data2 = int(ASCII.getDecimal(self.m_trame[16]))
+        data1 = float(ASCII.getDecimal(self.m_trame[17]))
+        data2 = float(ASCII.getDecimal(self.m_trame[16]))
         return ((data1 * 256 + data2) / 1000) * 33.86
 
     def get_10min_avg_wind_speed(self):

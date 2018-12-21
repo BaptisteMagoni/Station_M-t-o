@@ -4,6 +4,7 @@
 from SerialWrapper import SerialWrapper
 from read_data import Trame
 from time import sleep
+from SqlConnection import SqlConnection
 import sys
 
 class Main:
@@ -11,6 +12,9 @@ class Main:
     def __init__(self, demo=False):
         try:
             self.demo = demo
+            self.sql = None
+            if not self.demo:
+                self.sql = SqlConnection(m_host="localhost", m_user="root", m_password="titibaba44", m_database="bdd_station_meteo")
             self.serialwrapper = SerialWrapper(com_str="/dev/ttyUSB0", demo=demo)
             self.serialwrapper.write("LPS\n")
             self.ans = self.serialwrapper.read()
@@ -19,7 +23,7 @@ class Main:
                 print("------------------------------------------------------------------------------------------------")
                 #print("Trame : {}".format(self.ans))
                 #print("Taille de la chaine est de {} donc elle est correct".format(len(self.ans)))
-                self.m_trame = Trame(trame=self.ans, demo=self.demo)
+                self.m_trame = Trame(trame=self.ans, demo=self.demo, sql=self.sql)
                 self.m_trame.__del__()
                 print("------------------------------------------------------------------------------------------------")
             else:

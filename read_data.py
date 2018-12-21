@@ -7,18 +7,22 @@ from Emulator import Emulator
 import ASCII
 
 class Trame:
-
-    def __init__(self, trame="Aucune Trame", demo=False):
+    
+    def __init__(self, trame="Aucune Trame", demo=False, sql=None):
         self.demo = demo
         self.m_trame = trame
         self.list_trame = {}
         self.add_list()
         self.instance_packet = None
-        type = self.get_type_packet()
-        if type == "LOOP":
+        m_type = self.get_type_packet()
+        if m_type == "LOOP":
             self.instance_packet = paquet_loop(trame=self.list_trame)
-        elif type == "LOOP2":
+        elif m_type == "LOOP2":
             self.instance_packet = paquet_loop2(trame=self.list_trame)
+        if not self.demo:
+            self.sql = sql
+            self.tuple_list = (str(self.m_trame), str(self.instance_packet.get_type()), str(self.instance_packet.get_bar_trend()), str(self.instance_packet.get_barometer()), str(self.instance_packet.get_inside_temperature()), str(self.instance_packet.get_inside_humidity()), str(self.instance_packet.get_outside_temperature()), str(self.instance_packet.get_wind_speed()), str(self.instance_packet.get_wind_direction()))
+            self.sql.insert_data(self.tuple_list)
         print("Bar Trend : {}".format(self.instance_packet.get_bar_trend()))
         print("Barometer : {} inches".format(self.instance_packet.get_barometer()))
         print("Inside temperature : {} °C".format(self.instance_packet.get_inside_temperature()))
