@@ -3,7 +3,6 @@
 
 from paquet_loop2 import paquet_loop2
 from paquet_loop import paquet_loop
-from Emulator import Emulator
 import ASCII
 
 class Trame:
@@ -30,8 +29,6 @@ class Trame:
         print("Outside Temperature : {} °C".format(self.instance_packet.get_outside_temperature()))
         print("Wind speed : {} km/h".format(self.instance_packet.get_wind_speed()))
         print("Wind direction : {} °".format(self.instance_packet.get_wind_direction()))
-        if self.demo:
-            self.emulator = Emulator()
 
     def get_data_trame(self):
         return self.instance_packet

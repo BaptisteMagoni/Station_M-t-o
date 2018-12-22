@@ -4,7 +4,6 @@
 import serial
 import serial.tools.list_ports
 import logging
-from Emulator import Emulator
 
 class SerialWrapper:
 
