@@ -3,33 +3,33 @@
 
 import socket
 import threading
-
+import socket
 
 class clientThread(threading.Thread):
 
-    def __init__(self, ip, port, clientsocket):
+    def __init__(self, VantagePro=None):
+        self.isFinish = False
+        self.vantage = VantagePro
         threading.Thread.__init__(self)
-        self.ip = ip
-        self.port = port
-        self.clientsocket = clientsocket
-        print("[+] Nouveau thread pour %s %s" % (self.ip, self.port,))
+        print("Socket server start")
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.bind(('', 55000))
 
     def run(self):
-        print("Connexion de %s %s" % (self.ip, self.port,))
+        while not self.isFinish:
+            self.socket.listen(5)
+            client, address = self.socket.accept()
+            print("{} connected".format(address))
 
-        r = self.clientsocket.recv(2048)
-        print("Ouverture du fichier: ", r.decode("utf-8"), "...")
+            response = client.recv(255)
+            if response.decode("utf-8") == "stop":
+                self.isFinish = True
+                print("Stop processus")
+                self.vantage.isFinish = True
+                self.__del__()
+            else:
+                if response != "":
+                    print(response.decode("utf-8"))
 
-        print("Client déconnecté...")
-
-
-tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-tcpsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-tcpsock.bind(("", 55000))
-
-while True:
-    tcpsock.listen(10)
-    print("En écoute...")
-    (clientsocket, (ip, port)) = tcpsock.accept()
-    newthread = ClientThread(ip, port, clientsocket)
-    newthread.start()
+    def __del__(self):
+        pass

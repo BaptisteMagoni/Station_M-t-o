@@ -34,6 +34,8 @@ class Trame:
             self.emulator = Emulator()
         #print(ASCII.getDecimal(self.list_trame[3]))
 
+    def get_data_trame(self):
+        return self.instance_packet
 
     def add_list(self):
         nb_tour = 0
