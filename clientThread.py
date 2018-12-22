@@ -37,6 +37,7 @@ class clientThread(threading.Thread):
 
             response = client.recv(255)
             if response.decode("utf-8") == "stop":
+                self.socket.close()
                 self.isFinish = True
                 print("Stop processus")
                 self.vantage.isFinish = True
