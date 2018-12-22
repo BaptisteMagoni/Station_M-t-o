@@ -15,10 +15,10 @@ class threadVantagePro2(threading.Thread):
         self.isFinish = False
         print("Main Thread start")
         self.demo = demo
+        self.m_trame = None
         self.sql = None
         if not self.demo:
-            self.sql = SqlConnection(m_host="localhost", m_user="root", m_password="titibaba44",
-                                     m_database="bdd_station_meteo")
+            self.sql = SqlConnection(m_host="localhost", m_user="root", m_password="titibaba44", m_database="bdd_station_meteo")
         self.serialwrapper = SerialWrapper(com_str="/dev/ttyUSB0", demo=demo)
         self.serialwrapper.write("LPS\n")
 
@@ -26,13 +26,10 @@ class threadVantagePro2(threading.Thread):
         while not self.isFinish:
             try:
                 self.ans = self.serialwrapper.read()
-                print(self.ans)
+                print("Trame : {}".format(self.ans))
                 if(len(self.ans)) == 198:
                     print("------------------------------------------------------------------------------------------------")
-                    #print("Trame : {}".format(self.ans))
-                    #print("Taille de la chaine est de {} donc elle est correct".format(len(self.ans)))
                     self.m_trame = Trame(trame=self.ans, demo=self.demo, sql=self.sql)
-                    self.m_trame.__del__()
                     print("------------------------------------------------------------------------------------------------")
                 else:
                     print("Taille de la chaine est de {} donc elle est pas correct".format(len(self.ans)))

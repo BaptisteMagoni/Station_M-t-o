@@ -32,10 +32,12 @@ class Trame:
         print("Wind direction : {} °".format(self.instance_packet.get_wind_direction()))
         if self.demo:
             self.emulator = Emulator()
-        #print(ASCII.getDecimal(self.list_trame[3]))
 
     def get_data_trame(self):
         return self.instance_packet
+
+    def get_str_trame(self):
+        return self.m_trame
 
     def add_list(self):
         nb_tour = 0
