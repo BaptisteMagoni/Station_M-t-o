@@ -30,6 +30,9 @@ class Trame:
         print("Wind speed : {} km/h".format(self.instance_packet.get_wind_speed()))
         print("Wind direction : {} °".format(self.instance_packet.get_wind_direction()))
 
+    def get_all_data(self):
+        return "{}:{}:{}:{}:{}:{}:{}:{}".format(self.instance_packet.get_type(), self.instance_packet.get_bar_trend(), self.instance_packet.get_barometer(), self.instance_packet.get_inside_temperature(), self.instance_packet.get_inside_humidity(), self.instance_packet.get_outside_temperature(), self.instance_packet.get_wind_speed(), self.instance_packet.get_wind_direction())
+
     def get_data_trame(self):
         return self.instance_packet
 

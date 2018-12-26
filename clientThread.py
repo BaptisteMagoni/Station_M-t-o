@@ -4,6 +4,8 @@
 import socket
 import threading
 import socket
+import os
+import signal
 import threadVantagePro2
 DICT_DATA = {
     "GET:TYPEPACKET": "self.vantage.get_instance_trame().get_type_packet()",
@@ -15,6 +17,7 @@ DICT_DATA = {
     "GET:OUTSIDETEMP": "self.vantage.get_instance_trame().get_data_trame().get_outside_temperature()",
     "GET:WINDSPEED": "self.vantage.get_instance_trame().get_data_trame().get_wind_speed()",
     "GET:WINDDIRECTION": "self.vantage.get_instance_trame().get_data_trame().get_wind_direction()",
+    "GET:ALL": "self.vantage.get_instance_trame().get_all_data()",
     "ERROR": "ERROR"
 }
 
@@ -36,21 +39,28 @@ class clientThread(threading.Thread):
             print("{} connected".format(address))
 
             response = client.recv(255)
-            if response.decode("utf-8") == "stop":
+            client_send = response.decode("utf-8")
+            print("Recu : {}".format(client_send))
+            if client_send == "stop":
                 self.socket.close()
+                client.close()
                 self.isFinish = True
-                print("Stop processus")
                 self.vantage.isFinish = True
                 self.__del__()
                 self.vantage.__del__()
+                print("Stop processus")
+                if not self.demo:
+                    os.kill(os.getpid(), signal.SIGTERM)
             else:
                 if response != "":
                     for command in DICT_DATA:
-                        if command == str(response.decode("utf-8")):
+                        if command == client_send:
                             try:
-                                client.send(str(eval(DICT_DATA[command])).encode())
-                            except:
-                                pass
+                                data = str(eval(DICT_DATA[command])).encode()
+                                client.send(data)
+                                print("Envoi de : {}".format(data))
+                            except ValueError as err:
+                                print("Erreur : {}".format(err))
 
 
     def __del__(self):
