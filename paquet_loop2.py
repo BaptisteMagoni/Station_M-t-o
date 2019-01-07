@@ -55,7 +55,7 @@ class paquet_loop2:
     def get_wind_direction(self):
         data1 = float(ASCII.getDecimal(self.m_trame[17]))
         data2 = float(ASCII.getDecimal(self.m_trame[16]))
-        return ((data1 * 256 + data2) / 1000) * 33.86
+        return int(round(((data1 * 256 + data2) / 1000) * 33.86))
 
     def get_10min_avg_wind_speed(self):
         pass

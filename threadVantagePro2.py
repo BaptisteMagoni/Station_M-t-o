@@ -35,7 +35,7 @@ class threadVantagePro2(threading.Thread):
                     print("Taille de la chaine est de {} donc elle est pas correct".format(len(self.ans)))
             except ValueError:
                 print("Mettez vous en mode démo ou alors il y a un problème quelque part d'autre !")
-            sleep(5)
+            sleep(4.5)
         if self.isFinish:
             self.__del__()
 
