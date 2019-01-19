@@ -5,10 +5,15 @@ import serial
 import serial.tools.list_ports
 import logging
 
+TRAME = {
+
+}
+
 class SerialWrapper:
 
     def __init__(self, com_port=None, com_str=None, demo=False):
         self.demo = demo
+        self.index = 0
         if not self.demo:
             self.log = logging.getLogger(__name__)
             print("Création de la méthode Sérial Wrapper")
@@ -22,6 +27,7 @@ class SerialWrapper:
                 except:
                     print("Erreur COM STR")
         else:
+            self.init_trame_dict()
             print("Mode démo")
 
     def write(self, data):
@@ -36,4 +42,20 @@ class SerialWrapper:
             except:
                 self.log.error("Un erreur c'est produite dans la lecture du port série !")
         else:
-            return "4c4f4f1401ff7f0275d40224b90104ff3b014a003c0010005101ff7fff7f2100ff41ff2b002800ff000000ffff7f0c0092240c000000000000000c00020000ffff027502750275ff00050e120a06151e030101ff7fff7fff7fff7fff7fff7f0a0d40c0"
+            try:
+                trame = TRAME[self.index]
+                self.index += 1
+                if trame[len(trame)-1] is "\n":
+                    return trame[:-1]
+                else:
+                    return trame
+            except:
+                self.index = 0
+
+
+    def init_trame_dict(self):
+        i = 0
+        fichier = open("trame.txt", "r")
+        for ligne in fichier.readlines():
+            TRAME[i] = ligne
+            i += 1

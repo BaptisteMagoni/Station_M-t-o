@@ -26,6 +26,8 @@ class paquet_loop2:
             return "Rising Rapidly"
         elif data is "80":
             return "P"
+        else:
+            return "None"
 
     def get_barometer(self):
         data1 = float(ASCII.getDecimal(self.m_trame[8]))
